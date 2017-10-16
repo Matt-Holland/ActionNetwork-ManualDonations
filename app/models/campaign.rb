@@ -1,0 +1,6 @@
+class Campaign
+
+    
+
+
+end

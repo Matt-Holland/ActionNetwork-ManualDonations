@@ -1,0 +1,28 @@
+<h2>donations index</h2>
+
+<%= debug @response %>
+
+<h2>FundraisingPage.title: "First API test"</h2>
+
+<form action="/donations" method="post">
+<%= hidden_field_tag :authenticity_token, form_authenticity_token %>
+<!-- selected person's ID  -->
+Person's AN ID: <br/>
+<input type="text" name="person[action_network_id]" value="action_network:223bd89d-27b6-4bb4-ab58-1ebefc7d6067">
+ <br />
+<!-- selected campaign's ID .... our own, or the Action Network one???  -->
+<br />
+Campaign's AN ID: <br />
+<input type="text" name="campaign[action_network_id]" value="action_network:1107ba3e-ce6d-4fb0-a1a0-d83725ec5d31">
+<br />
+<!-- recipients":[{"display_name":"donation from api","amount":3.11 -->
+<br />Donation Amount: <br />
+<input type="text" name="donation[amount]">
+
+<input type="hidden" name="donation[display_name]" value="API form">
+
+
+
+
+<input type="submit">
+</form>

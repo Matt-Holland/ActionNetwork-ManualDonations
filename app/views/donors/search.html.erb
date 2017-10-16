@@ -1,0 +1,20 @@
+
+Find a donor <br/>
+
+for the campaign with ID: 
+<%= debug session[:campaign_hash] %>
+<br />
+<%= session[:campaign_hash]['id'] %>
+<br />
+and  title: <%= session[:campaign_hash]['title'] %>
+<br />
+
+<form action=<%= url_for search_donors_path %> method="post">
+    <%= hidden_field_tag :authenticity_token, form_authenticity_token %>
+    First name: <input type="text" name="person[given_name]"><br>
+    Last name: <input type="text" name="person[family_name]"><br>
+    Zipcode: <input type="text" name="person[postal_code]">
+    <input type="hidden" name="campaign[action_network_id]" value="<%= session[:campaign_hash]['id'] %>" >
+    <input type="hidden" name="campaign[description]" value="<%= session[:campaign_hash]['title'] %>">
+    <input type="submit" value="Submit">
+</form>
