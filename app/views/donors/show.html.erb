@@ -1,7 +1,6 @@
 
 
 
-
 <style>
 table, th, td {
     border: 1px solid black;
@@ -31,6 +30,7 @@ found these potential donors:
                 <% donor['identifiers'].each do |donor_id| %>
                     <% if donor_id.start_with?("action_network:") then %>
                         <% donor_id.slice!('action_network:') %>
+                        <% this_donor_id = donor_id %>
                     <% end %>
                 <% end %>
 

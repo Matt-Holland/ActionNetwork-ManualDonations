@@ -51,7 +51,7 @@ class DonorsController < ApplicationController
         
                 # how do I just show the empty form if we don't have params? I guess only do the submittal of
                 # the api search if we already have parameters to work with...
-        
+                
                 filter_array = Array.new
         
                 params[:person].keys.each do |param_key| 
