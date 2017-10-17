@@ -2,6 +2,7 @@
 <p>
   <b>Found <%= @total_records %> fundraising <%= 'campaign'.pluralize(@total_records)%> eligible for manual donation insertion</b>
 </p>
+<%= debug @keys %>
 <form action=<%= url_for search_campaigns_path %> method="post">
 <%= hidden_field_tag :authenticity_token, form_authenticity_token %>
   <select name="campaign[action_network_id]">

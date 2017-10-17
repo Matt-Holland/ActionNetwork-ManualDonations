@@ -1,13 +1,14 @@
 class CampaignsController < ApplicationController
 
-
+  
 
   def index
     # show all the available fundraising pages, which we call "campaigns"
-      
-    url = "https://actionnetwork.org/api/v2/fundraising_pages?filter=origin_system%20eq%20%27Mattholland.com%27"
+
+    url = "https://actionnetwork.org/api/v2/fundraising_pages?filter=origin_system%20eq%20%27Ruckus%20Manual%20Input%27"
   
-    response = RestClient.get(url, headers={'content_type' => :json, 'OSDI-API-Token' => '449ad9a708611ca4c91d99511ea3ff40'})
+    # @keys is created in application_controller, by reading a yaml file which is not stored in git
+    response = RestClient.get(url, headers={'content_type' => :json, 'OSDI-API-Token' =>  @keys['ruckus_api']   })
     @response_hash = JSON.parse(response)
     # @response_object = JSON.parse(@response, object_class: OpenStruct)
     campaigns_array = @response_hash['_embedded']['osdi:fundraising_pages']    
@@ -33,7 +34,7 @@ class CampaignsController < ApplicationController
 
     campaign_url = "https://actionnetwork.org/api/v2/fundraising_pages/" + campaign_action_network_id
     
-    campaign_response = RestClient.get(campaign_url, headers={'content_type' => :json, 'OSDI-API-Token' => '449ad9a708611ca4c91d99511ea3ff40'})
+    campaign_response = RestClient.get(campaign_url, headers={'content_type' => :json, 'OSDI-API-Token' => @keys['ruckus_api'] })
     @campaign_object = JSON.parse(campaign_response, object_class: OpenStruct)
 
     campaign_action_network_id = 0
