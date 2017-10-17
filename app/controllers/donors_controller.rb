@@ -64,7 +64,7 @@ class DonorsController < ApplicationController
                 url = 'https://actionnetwork.org/api/v2/people/?filter=' + filter_string 
         
                 @response = RestClient.get(url, headers={'content_type' => :json,
-                    'OSDI-API-Token' => '449ad9a708611ca4c91d99511ea3ff40'})
+                    'OSDI-API-Token' => @keys['ruckus_api']})
         
                 @response_hash = JSON.parse(@response)
         
