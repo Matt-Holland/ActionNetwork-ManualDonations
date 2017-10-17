@@ -2,7 +2,16 @@
 
 
 
+<style>
+table, th, td {
+    border: 1px solid black;
+}
 
+table {
+    border-spacing: 5px;
+}
+
+</style>
 
 for campaign <h2>"<%= session[:campaign_hash]['title'] %>"</h2>
 
@@ -10,10 +19,11 @@ found these potential donors:
 
 <br />
 <br />
-<table border="1">
-    <tr>
-        <td>
-            <% @donors_array.each do |donor| %>
+<table>
+
+    <% @donors_array.each do |donor| %>
+        <tr>
+            <td>
                 <form action="<%= url_for donations_path %>" method="post">
                 <%= hidden_field_tag :authenticity_token, form_authenticity_token %>
 
@@ -26,9 +36,11 @@ found these potential donors:
 
                     <%= donor['given_name'] %> &nbsp; &nbsp; <%= donor['family_name'] %>
                     <br />
+                    <br />
                     created: <%= donor['created_date']%>
                     <br />
                     modified: <%= donor['modified_date']%>
+                    <br />
                     <br />
                         postal address: <br />
                         <% donor['postal_addresses'].each do |postal_address| %>
@@ -45,24 +57,29 @@ found these potential donors:
 
                         <% end %>
                     <br />
+                    <br />
                         Email address: <br/>
                         <% donor['email_addresses'].each do |email_address| %>
                             <%= email_address['address']%>
                         <% end %>
 
-                        <br />Donation Amount: <br />
-                        <input type="text" name="donation[amount]">
+                        <br />
+                        <br />
+                        Donation Amount: 
+                        <br />
+                        <input type="text" name="donation[amount]"> &nbsp; <input type="submit">
                         <input type="hidden" name="campaign[action_network_id]" value="<%= session[:campaign_hash]['id'] %>">
                         <input type="hidden" name="donation[display_name]" value="API form">
                         <input type="hidden" name="person[action_network_id]" value="<%= this_donor_id %>" >
                     <br />
                     <br />
-                <input type="submit">
+                
                 </form>
             <br />
-            <% end %>
-        </td>
-    </tr>
+            </td>
+        </tr>
+    <% end %>
+
 </table>
 <br />
 <br />

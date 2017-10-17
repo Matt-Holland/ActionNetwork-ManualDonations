@@ -24,7 +24,14 @@ class CampaignsController < ApplicationController
   def search
     # retrieve the details of one selected campaign, make a custom object with just the good parts and store in the session
 
-    campaign_url = "https://actionnetwork.org/api/v2/fundraising_pages/" + params[:campaign][:action_network_id]
+    if params[:campaign] then
+      campaign_action_network_id = params[:campaign][:action_network_id]
+    else
+      campaign_action_network_id = session[:campaign_hash]['id']
+    end
+
+
+    campaign_url = "https://actionnetwork.org/api/v2/fundraising_pages/" + campaign_action_network_id
     
     campaign_response = RestClient.get(campaign_url, headers={'content_type' => :json, 'OSDI-API-Token' => '449ad9a708611ca4c91d99511ea3ff40'})
     @campaign_object = JSON.parse(campaign_response, object_class: OpenStruct)
