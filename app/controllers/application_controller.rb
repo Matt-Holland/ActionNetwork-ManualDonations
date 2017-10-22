@@ -4,7 +4,7 @@ class ApplicationController < ActionController::Base
 
   before_action :get_keys
   def get_keys
-    @keys = ENV['RUCKUS_API_KEY']
+    @keys = {'ruckus_api' => ENV['RUCKUS_API_KEY'] }
   end
   
 
