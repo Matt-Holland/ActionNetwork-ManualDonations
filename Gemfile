@@ -47,6 +47,10 @@ group :development, :test do
   # Adds support for Capybara system testing and selenium driver
   gem 'capybara', '~> 2.13'
   gem 'selenium-webdriver'
+
+  # get the environment variables from project_dir/.env
+  gem 'dotenv-rails'
+  
 end
 
 group :development do
