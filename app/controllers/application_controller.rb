@@ -13,7 +13,7 @@ class ApplicationController < ActionController::Base
   
   def authenticate
     authenticate_or_request_with_http_basic do |username, password|
-      username == ENV['RUCKUS_USER'] && password == ENV['RUCKUS_PASS']
+      username = ENV['RUCKUS_USER'] && password = ENV['RUCKUS_PASS']
     end
   end
 
